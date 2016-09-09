@@ -4,9 +4,40 @@ If no oauth session is available, a standard fetch will be used.
 
 Usage
 
-	var oauthFetch = require( 'oauth-fetch-json' );
-	oauthFetch( url, { query: 'foo': data: {} }, {}, session ).then( function ( json ) {
-		console.log( "I got a json!", json );
-	} ).catch( function ( err ) {
-		console.log( 'whoops', err );
-	} );
+	import passport from 'passport'
+	import oauthFetch from 'oauth-fetch-json'
+	
+	passport.use(
+		new OAuthStrategy({
+			consumerKey: CONSUMER_KEY,
+			consumerSecret: CONSUMER_SECRET
+		},
+		function(token, tokenSecret, profile, done) {
+			profile.oauth = {
+				consumer_key : CONSUMER_KEY,
+				consumer_secret : CONSUMER_SECRET,
+				token : token,
+				token_secret : tokenSecret
+			}
+			return done(null, profile);
+		} )
+	);
+	
+	const app = express()
+	function ensureAuthenticated(req, res, next) {
+		if (req.isAuthenticated()) {
+			return next();
+		} else {
+			res.status( 401 );
+			res.send( 'Login required for this endpoint' );
+		}
+	}
+	app.get('/oauth/endpoint', ensureAuthenticated, function(req, res){
+			oauthFetch( 'http://endpointWhichYouAreOAuthenticatedAgainst.org', { query: 'foo' }, {}, req.user.oauth ).then( function ( data ) {
+				res.setHeader('Content-Type', 'application/json');
+				res.status( 200 );
+				res.send( JSON.stringify( data ) );
+			} );
+		};
+	});
+
