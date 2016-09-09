@@ -1,0 +1,14 @@
+{
+  "name": "oauth-fetch",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "version": "0.2.0",
+  "dependencies": {
+    "node-fetch": "^1.5.3"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0"
+  }
+}
