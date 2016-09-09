@@ -3,7 +3,7 @@
   "scripts": {
     "test": "grunt test"
   },
-  "version": "0.2.0",
+  "version": "0.3.0",
   "dependencies": {
     "node-fetch": "^1.5.3",
     "node-jquery-param": "0.0.2"
