@@ -8,8 +8,8 @@ function signedRequest( url, session, params, options ) {
     'https://meta.wikimedia.org/index.php?title=Special%3AOAuth%2Finitiate',
     // URL to get access token
     'https://meta.wikimedia.org/index.php??title=Special%3AOAuth%2Ftoken',
-    session.oauth.consumer_key,
-    session.oauth.consumer_secret,
+    session.consumer_key,
+    session.consumer_secret,
     '1.0',
     null,
     'HMAC-SHA1'
@@ -27,16 +27,16 @@ function signedRequest( url, session, params, options ) {
     if ( options && options.method === 'POST' ) {
       oauth.post(
         url,
-        session.oauth.token,
-        session.oauth.token_secret,
+        session.token,
+        session.token_secret,
         params,
         handler );
     } else {
       url += '?' + param( params );
       oauth.get(
         url,
-        session.oauth.token,
-        session.oauth.token_secret,
+        session.token,
+        session.token_secret,
         handler);
     }
   } );
