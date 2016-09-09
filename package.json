@@ -1,5 +1,5 @@
 {
-  "name": "oauth-fetch",
+  "name": "oauth-fetch-json",
   "scripts": {
     "test": "grunt test"
   },
