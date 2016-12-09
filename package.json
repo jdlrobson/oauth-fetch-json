@@ -3,14 +3,14 @@
   "scripts": {
     "test": "grunt test"
   },
-  "version": "0.3.1",
+  "version": "0.3.2",
   "dependencies": {
     "node-fetch": "^1.5.3",
+    "oauth": "^0.9.14",
     "node-jquery-param": "0.0.2"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
-    "grunt-contrib-jshint": "^1.0.0",
-    "oauth": "^0.9.14"
+    "grunt-contrib-jshint": "^1.0.0"
   }
 }
