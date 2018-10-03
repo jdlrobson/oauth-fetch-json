@@ -30,7 +30,9 @@ function signedRequest( url, session, params, options ) {
         session.token,
         session.token_secret,
         params,
-        handler );
+        'application/json',
+        handler
+      );
     } else {
       url += '?' + param( params );
       oauth.get(
